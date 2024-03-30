@@ -1,0 +1,84 @@
+﻿@page "/Create-Lesson"
+@using PreTestSchool.Services
+@using PreTestSchool.Models
+@using System
+@inject ITeacherServices TeacherServices
+@inject ITopicsServices TopicsServices
+@inject ILessonServices LessonServices
+@attribute [StreamRendering(true)]
+
+<h3>CreateLesson</h3>
+
+<div>
+	<EditForm Model="lesson" OnSubmit="SubmitForm">
+		<div>
+			<Label>Lesson ID</Label>
+			<InputNumber @bind-Value = "lesson.LessonId"></InputNumber>
+		</div>
+		<div>
+			<Label>Teacher</Label>
+			<InputSelect @bind-Value="lesson.TeacherId">
+				@foreach(var teacher in teachers)
+				{
+					<option value="@teacher.TeacherId">@teacher.TeacherName</option>
+				}
+			</InputSelect>
+		</div>
+		<div>
+			<Label>Topic ID</Label>
+			<InputSelect @bind-Value="lesson.TopicId">
+				@foreach (var topic in topics)
+				{
+					<option value ="@topic.TopicId">@topic.TopicName</option>
+				}
+			</InputSelect>
+		</div>
+		<div>
+			<Label>Notes</Label>
+			<InputText @bind-Value = "lesson.Notes"></InputText>
+		</div>
+		<div>
+			<Label>Start Date</Label>
+			<InputDate @bind-Value = "lesson.StartDate"></InputDate>
+		</div>
+		<div>
+			<Label>End Date</Label>
+			<InputDate @bind-Value = "lesson.EndDate"></InputDate>
+		</div>
+		<div>
+			<button type="submit">Submit</button>
+		</div>
+	</EditForm>
+</div>
+
+@code {
+
+	PreTestSchool.Models.Lessons lesson { get; set; } = new PreTestSchool.Models.Lessons
+	{
+		StartDate = DateTime.UtcNow,
+		EndDate = DateTime.UtcNow
+	};
+
+	List<PreTestSchool.Models.Teachers> teachers = new List<PreTestSchool.Models.Teachers>();
+	List<PreTestSchool.Models.Topics> topics = new List<PreTestSchool.Models.Topics>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		teachers = await TeacherServices.GetAllTeachers();
+		topics = await TopicsServices.GetAllTopics();
+	}
+
+	async Task SubmitForm()
+	{
+		var teacher = teachers.FirstOrDefault(t => t.TeacherId == lesson.TeacherId);
+		var topic = topics.FirstOrDefault(t => t.TopicId == lesson.TopicId);
+		if (teacher != null)
+		{ lesson.TeacherId = teacher.TeacherId;
+		}
+		if (topic != null)
+		{ lesson.TopicId = topic.TopicId;
+		}
+		lesson.CreationDate = DateTime.UtcNow;
+		await LessonServices.CreateLesson(lesson);
+	}
+}

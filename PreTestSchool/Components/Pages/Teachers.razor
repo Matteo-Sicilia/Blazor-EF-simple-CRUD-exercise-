@@ -1,0 +1,49 @@
+﻿@page "/teachers"
+@using PreTestSchool.Services
+@using PreTestSchool.Models
+@using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal
+@inject ITeacherServices TeacherServices
+@inject NavigationManager NavigationManager
+@attribute [StreamRendering(true)]
+
+
+<h1>Teachers</h1>
+
+<h2>List of all Teachers</h2>
+
+@if (teachers == null)
+{
+	<span>Loading...</span>
+}
+else if (teachers.Count == 0)
+{
+	<span>No Teachers Found</span>
+}
+else
+{
+	<ul>
+		@foreach (var teacher in teachers)
+		{
+			<li>@teacher.TeacherName</li>
+		}
+	</ul>
+}
+
+<button @onclick= "AddTeacher">Add Teacher</button>
+
+
+@code {
+
+	List<PreTestSchool.Models.Teachers> teachers = new List<PreTestSchool.Models.Teachers>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var result = await TeacherServices.GetAllTeachers();
+		teachers = result != null ? result : new List<PreTestSchool.Models.Teachers>();
+	}
+
+	void AddTeacher()
+	{
+		NavigationManager.NavigateTo("/add-teacher");
+	}
+}

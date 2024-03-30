@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ITS-1046\\Progetti VSCode Classe\\PreTestSchool\\PreTestSchool\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PreTestSchool.bundle.scp.css",
+      "PackagePath": "staticwebassets\\PreTestSchool.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ITS-1046\\Progetti VSCode Classe\\PreTestSchool\\PreTestSchool\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\ITS-1046\\Progetti VSCode Classe\\PreTestSchool\\PreTestSchool\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ITS-1046\\Progetti VSCode Classe\\PreTestSchool\\PreTestSchool\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ITS-1046\\Progetti VSCode Classe\\PreTestSchool\\PreTestSchool\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PreTestSchool.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.PreTestSchool.props",
+      "PackagePath": "build\\PreTestSchool.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.PreTestSchool.props",
+      "PackagePath": "buildMultiTargeting\\PreTestSchool.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.PreTestSchool.props",
+      "PackagePath": "buildTransitive\\PreTestSchool.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

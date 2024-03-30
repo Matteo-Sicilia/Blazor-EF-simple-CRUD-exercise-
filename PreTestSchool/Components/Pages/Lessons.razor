@@ -1,0 +1,60 @@
+﻿@page "/lessons-list"
+@using PreTestSchool.Services
+@using Shared
+@inject ILessonServices LessonServices
+@inject NavigationManager NavigationManager
+
+
+<h3>Lessons</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Lesson ID</th>
+        <th>Teacher ID</th>
+        <th>Topic ID</th>
+        <th>Notes</th>
+        <th>Creation Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var lesson in lessons)
+    {
+        <tr>
+            <td>@lesson.LessonId</td>
+            <td>@lesson.TeacherName</td>
+            <td>@lesson.TopicName</td>
+            <td>@lesson.Notes</td>
+            <td>@lesson.CreationDate</td>
+            <td>@lesson.StartDate</td>
+            <td>@lesson.EndDate</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<button @onclick ="CreateLesson">Create Lesson</button>
+
+@code {
+	List<PreTestSchool.Models.LessonsJoin> lessons = new List<PreTestSchool.Models.LessonsJoin>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var result = await LessonServices.JoinLessons();
+        lessons = result;
+
+    }
+
+    void CreateLesson()
+    {
+        NavigationManager.NavigateTo("/Create-Lesson");
+    }
+}
+
+@* protected override async Task OnInitializedAsync() *@
+@* { *@
+@* var result = await LessonServices.JoinLessons(); *@
+@* lessons = result != null ? result : new List<PreTestSchool.Models.Lessons>(); *@
+@* *@
+@* } *@
